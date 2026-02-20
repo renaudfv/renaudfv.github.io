@@ -1,4 +1,4 @@
-const header = document.querySelector('header');
+const header = document.querySelector('.bg');
 
 let mouseX = 0.5;
 let mouseY = 0.5;
