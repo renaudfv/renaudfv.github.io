@@ -1,81 +1,94 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+
+/* ================================================
+   Reset & base
+   ================================================ */
 
 * {
     font-family: 'Cormorant Garamond', serif;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    /* remove background: #0a0a0a */
+    background: #fff;
+    color: #111;
 }
 
-h1, h2 {
-    color: white;
+/* ================================================
+   Header — full viewport, p5 gradient behind text
+   ================================================ */
+
+header {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.p5 {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+/* p5 appends canvas inside .p5 */
+.p5 canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
 }
 
 .header {
     position: relative;
     z-index: 1;
-    margin-top: 48px;
+    padding: 3rem 4rem;
 }
 
-header {
-    position: relative;
-    height: 100vh;
-}
-.p5 {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
+h1 {
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
 }
 
-/* Prevent the p5 canvas from blocking clicks */
-header canvas {
-    pointer-events: none;
-    display: block;
+h2 {
+    font-weight: 300;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.6);
 }
+
+/* ================================================
+   Projects section — white, clean
+   ================================================ */
 
 #projects {
-    padding: 8rem 0 12rem;
-}
-
-#projects .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 4rem;
+    background: #fff;
+    padding: 6rem 4rem 10rem;
 }
 
 #projects h3 {
     font-weight: 300;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.25);
-    margin-bottom: 5rem;
+    color: rgba(0, 0, 0, 0.3);
+    margin-bottom: 4rem;
 }
 
 #projects-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 7rem 5rem;
+    gap: 6rem 5rem;
+    max-width: 1200px;
 }
 
-@media (max-width: 768px) {
-    #projects-grid {
-        grid-template-columns: 1fr;
-        gap: 5rem;
-    }
-
-    #projects .container {
-        padding: 0 2rem;
-    }
-}
+/* ================================================
+   Project cards
+   ================================================ */
 
 .project-card {
     display: block;
@@ -88,10 +101,10 @@ header canvas {
     aspect-ratio: 4 / 3;
     background-size: cover;
     background-position: center;
-    background-color: #111;
+    background-color: #eee;
     display: block;
     transition: opacity 0.4s ease;
-    opacity: 0.75;
+    opacity: 0.9;
 }
 
 .project-card:hover .project-img {
@@ -99,7 +112,7 @@ header canvas {
 }
 
 .project-img--empty {
-    background: #111;
+    background: #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,47 +120,64 @@ header canvas {
 
 .project-img--empty::after {
     content: '—';
-    color: rgba(255, 255, 255, 0.08);
+    color: rgba(0, 0, 0, 0.1);
     font-size: 2rem;
 }
 
 .project-info {
-    margin-top: 1.8rem;
+    margin-top: 1.5rem;
     display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 0.5rem 1.5rem;
+    grid-template-columns: 70px 1fr;
+    gap: 0.4rem 1.5rem;
     align-items: baseline;
 }
 
 .project-info-label {
     font-weight: 300;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.22);
-    padding-top: 0.1rem;
+    color: rgba(0, 0, 0, 0.3);
 }
 
 .project-info-value {
     font-weight: 300;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.65);
     line-height: 1.4;
 }
 
 .project-info-value.project-title {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    color: #111;
 }
 
 .project-info-value.project-role {
     font-style: italic;
-    color: rgba(255, 255, 255, 0.45);
-    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.45);
 }
 
 .project-info-value.project-source {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.18);
+    color: rgba(0, 0, 0, 0.25);
+}
+
+/* ================================================
+   Responsive
+   ================================================ */
+
+@media (max-width: 900px) {
+    #projects-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    #projects {
+        padding: 4rem 2rem 8rem;
+    }
+
+    .header {
+        padding: 2rem;
+    }
 }
