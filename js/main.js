@@ -4,8 +4,6 @@ let mouseX = 0.5;
 let mouseY = 0.5;
 let currentX = 0.5;
 let currentY = 0.5;
-
-// Slow drift when no mouse movement
 let driftT = 0;
 
 document.addEventListener('mousemove', e => {
@@ -17,33 +15,27 @@ function lerp(a, b, t) {
     return a + (b - a) * t;
 }
 
-function hsl(h, s, l) {
-    return `hsl(${h}, ${s}%, ${l}%)`;
-}
-
 function tick() {
     driftT += 0.003;
 
-    // Drift slowly when mouse isn't moving
-    const targetX = mouseX + Math.sin(driftT * 0.7) * 0.05;
-    const targetY = mouseY + Math.cos(driftT * 0.5) * 0.05;
+    const targetX = mouseX + Math.sin(driftT * 0.7) * 0.04;
+    const targetY = mouseY + Math.cos(driftT * 0.5) * 0.04;
 
     currentX = lerp(currentX, targetX, 0.04);
     currentY = lerp(currentY, targetY, 0.04);
 
-    // Map position to hue/lightness ranges
-    const hue1 = 180 + currentX * 120;        // 180–300 (teal → purple)
-    const hue2 = hue1 + 40 + currentY * 60;   // offset hue
-    const light1 = 10 + currentY * 15;         // 10–25%
-    const light2 = 25 + currentX * 20;         // 25–45%
+    const hue1 = 80 + currentX * 200;       // 80–280
+    const hue2 = hue1 + 60;
+    const sat1 = 20 + currentY * 30;        // 20–50%
+    const sat2 = 30 + currentX * 20;        // 30–50%
+    const light1 = 20 + currentY * 20;      // 20–40%
+    const light2 = 35 + currentX * 20;      // 35–55%
 
-    const color1 = hsl(hue1, 30, light1);
-    const color2 = hsl(hue2, 40, light2);
-    const color3 = hsl(hue1 - 30, 20, 8);
+    const c1 = `hsl(${hue1}, ${sat1}%, ${light1}%)`;
+    const c2 = `hsl(${hue2}, ${sat2}%, ${light2}%)`;
+    const angle = 120 + currentX * 80;
 
-    const angle = 120 + currentX * 60;
-
-    header.style.background = `linear-gradient(${angle}deg, ${color3} 0%, ${color1} 45%, ${color2} 100%)`;
+    header.style.background = `linear-gradient(${angle}deg, ${c1}, ${c2})`;
 
     requestAnimationFrame(tick);
 }
