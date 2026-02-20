@@ -1,168 +1,218 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
 /* ================================================
-   Reset & base
+   Reset
    ================================================ */
 
-* {
-    font-family: 'Cormorant Garamond', serif;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --border: 1px solid rgba(255,255,255,0.12);
+  --font: 'Cormorant Garamond', serif;
+  --text: rgba(255,255,255,0.85);
+  --text-dim: rgba(255,255,255,0.35);
+  --text-dimmer: rgba(255,255,255,0.18);
+  --bar-h: 36px;
+}
+
+html {
+  font-family: var(--font);
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--text);
 }
 
 body {
-    overflow-x: hidden;
-    /* background: #fff; */
-    color: #111;
+  background: #0d0e0f;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ================================================
-   Header — full viewport, CSS gradient
+   Background gradient (driven by main.js)
    ================================================ */
 
-header {
-    height: 10vh;
-    display: flex;
-    align-items: flex-start;
-    background: hsl(150, 25%, 30%); /* fallback before JS kicks in */
-}
-
-.header {
-    padding: 3rem 4rem;
-}
-
-h1 {
-    font-weight: 300;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    color: white;
-    line-height: 1.1;
-    margin-bottom: 0.75rem;
-}
-
-h2 {
-    font-weight: 300;
-    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    color: rgba(255, 255, 255, 0.55);
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* ================================================
-   Projects section — white, clean
+   Top bar
+   ================================================ */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: var(--border);
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.topbar-name {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.topbar-sub {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+/* ================================================
+   Projects grid
    ================================================ */
 
 #projects {
-    background: #fff;
-    padding: 6rem 4rem 10rem;
-}
-
-#projects h3 {
-    font-weight: 300;
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.3);
-    margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+  padding-top: var(--bar-h);
+  padding-bottom: var(--bar-h);
 }
 
 #projects-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem 5rem;
-    max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: var(--border);
+  border-left: var(--border);
 }
 
 /* ================================================
-   Project cards
+   Project card
    ================================================ */
 
 .project-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-right: var(--border);
+  border-bottom: var(--border);
+  transition: background 0.3s ease;
+}
+
+.project-card:hover {
+  background: rgba(255,255,255,0.03);
 }
 
 .project-img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    background-size: cover;
-    background-position: center;
-    background-color: #eee;
-    display: block;
-    transition: opacity 0.4s ease;
-    opacity: 0.9;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(255,255,255,0.04);
+  display: block;
+  transition: opacity 0.4s ease;
+  opacity: 0.8;
 }
 
 .project-card:hover .project-img {
-    opacity: 1;
+  opacity: 1;
 }
 
 .project-img--empty {
-    background: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
 }
 
 .project-img--empty::after {
-    content: '—';
-    color: rgba(0, 0, 0, 0.1);
-    font-size: 2rem;
+  content: '—';
+  color: rgba(255,255,255,0.08);
+  font-size: 1.5rem;
 }
 
-.project-info {
-    margin-top: 1.5rem;
-    display: grid;
-    grid-template-columns: 70px 1fr;
-    gap: 0.4rem 1.5rem;
-    align-items: baseline;
+/* Metadata row below image — matches Cargo 2-col label/value layout */
+.project-meta {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  border-top: var(--border);
+  padding: 14px 14px 18px;
+  gap: 6px 0;
 }
 
-.project-info-label {
-    font-weight: 300;
-    font-size: 0.6rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.3);
+.project-meta-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dimmer);
+  padding-top: 3px;
+  line-height: 1.6;
 }
 
-.project-info-value {
-    font-weight: 300;
-    font-size: 0.95rem;
-    color: rgba(0, 0, 0, 0.65);
-    line-height: 1.4;
+.project-meta-value {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  line-height: 1.5;
 }
 
-.project-info-value.project-title {
-    font-size: 1.2rem;
-    color: #111;
+.project-meta-value.is-title {
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 400;
 }
 
-.project-info-value.project-role {
-    font-style: italic;
-    color: rgba(0, 0, 0, 0.45);
+.project-meta-value.is-role {
+  font-style: italic;
+  color: var(--text-dim);
 }
 
-.project-info-value.project-source {
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    color: rgba(0, 0, 0, 0.25);
+.project-meta-value.is-source {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: var(--text-dimmer);
+}
+
+/* ================================================
+   Bottom bar
+   ================================================ */
+
+.bottombar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-top: var(--border);
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 0.72rem;
+  color: var(--text-dimmer);
 }
 
 /* ================================================
    Responsive
    ================================================ */
 
-@media (max-width: 900px) {
-    #projects-grid {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-    }
+@media (max-width: 700px) {
+  #projects-grid {
+    grid-template-columns: 1fr;
+  }
 
-    #projects {
-        padding: 4rem 2rem 8rem;
-    }
-
-    .header {
-        padding: 2rem;
-    }
+  .topbar-sub {
+    display: none;
+  }
 }
