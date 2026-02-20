@@ -111,6 +111,16 @@
       }
     },
     {
+      "title": "Personal-JS",
+      "date": 2016,
+      "link": "https://webaudioconf.com/posts/2016_EA_30/",
+      "role": "Co-author — Web Audio Conference (WAC '16)",
+      "image": {
+        "src": null,
+        "source": "webaudioconf.com"
+      }
+    },
+    {
       "title": "LUNA PARK — Georges Aperghis",
       "date": 2015,
       "link": "https://wave.ircam.fr/demo/aperghis-luna-park/",
@@ -138,6 +148,36 @@
       "image": {
         "src": null,
         "source": "wave.ircam.fr"
+      }
+    },
+    {
+      "title": "Walk this way — Défi Innovation Desjardins / Hacking Health",
+      "date": 2015,
+      "link": "https://hhmontreal.sparkboard.com/project/563ac77500e48d03008ffc1d",
+      "role": "Contributor — Hackathon",
+      "image": {
+        "src": null,
+        "source": "hhmontreal.sparkboard.com"
+      }
+    },
+    {
+      "title": "Soundcloud Virtual Reality Player",
+      "date": 2014,
+      "link": "https://github.com/renaudfv/scvr",
+      "role": "Developer",
+      "image": {
+        "src": null,
+        "source": "github.com"
+      }
+    },
+    {
+      "title": "MyoMIDI — Wearhacks",
+      "date": 2014,
+      "link": "https://hhmontreal.sparkboard.com/project/563ac77500e48d03008ffc1d",
+      "role": "Contributor — Hackathon",
+      "image": {
+        "src": null,
+        "source": "wearhacks"
       }
     }
   ]
