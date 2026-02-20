@@ -1,16 +1,144 @@
 {
   "projects": [
     {
-      "date": 2015,
-      "link": "https://wave.ircam.fr/demo/aperghis-luna-park/"
+      "title": "Forest Mixer",
+      "date": 2026,
+      "link": "https://www.dailytouslesjours.com/en/work/forest-mixer",
+      "role": "Technological Direction",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2026/02/ForestMixer_Interaction_010_createdByDailytlj_photoByRambleFilms-728x460.jpg",
+        "source": "dailytouslesjours.com"
+      }
     },
     {
-      "date": 2015,
-      "link": "https://wave.ircam.fr/demo/posadas-elogio-de-la-sombra/"
+      "title": "Human Perches",
+      "date": 2025,
+      "link": "https://www.dailytouslesjours.com/en/work/human-perches",
+      "role": "Technological Direction",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2025/11/PerchoirsPourHumains_interaction_3_createdByDailytlj_photoByOlivierBlouin-728x546.jpg",
+        "source": "dailytouslesjours.com"
+      }
     },
-        {
+    {
+      "title": "Duetti",
+      "date": 2024,
+      "link": "https://www.dailytouslesjours.com/en/work/duets-musical-furniture",
+      "role": "Technological Direction",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2024/04/Duetti_night_1_createdByDailytlj_photoByVladimirAntaki_Low-728x485.jpeg",
+        "source": "dailytouslesjours.com"
+      }
+    },
+    {
+      "title": "Compose",
+      "date": 2024,
+      "link": "https://www.dailytouslesjours.com/en/work/compose",
+      "role": "Programming",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2024/04/Carrefour_Daily-Tous-Les-Jours-Olivier-Blouin-HRDJI_0561-728x545.jpg",
+        "source": "dailytouslesjours.com"
+      }
+    },
+    {
+      "title": "Heart of Angus",
+      "date": 2024,
+      "link": "https://www.dailytouslesjours.com/en/work/heart-of-angus",
+      "role": "Technological Direction, Programming",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2024/02/Angus_photo_paco-070-728x546.jpg",
+        "source": "dailytouslesjours.com"
+      }
+    },
+    {
+      "title": "Bell Orchestre Sound House",
+      "date": 2024,
+      "link": "https://www.aatoaa.com/soundhouse",
+      "role": "Creative Technologist",
+      "image": {
+        "src": "https://images.squarespace-cdn.com/content/v1/6671a74d50938d286f06b86b/3512b1eb-a494-4bd7-86a6-237aed1e92d1/SoundHouse_02_PhotoMaryseBoyce.jpg",
+        "source": "aatoaa.com"
+      }
+    },
+    {
+      "title": "Hello, Hello",
+      "date": 2023,
+      "link": "https://www.dailytouslesjours.com/en/work/hello-hello",
+      "role": "Technological Direction",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2023/10/HelloHello_5_createdByDtlj_photoBydoublespace_1800x900-728x364.jpg",
+        "source": "dailytouslesjours.com"
+      }
+    },
+    {
+      "title": "River Lines",
+      "date": 2023,
+      "link": "https://www.dailytouslesjours.com/en/work/river-lines",
+      "role": "Technological Direction",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2023/09/RiverLines_1_createdByDtlj_photoBydoublespace_1800x900-728x364.jpg",
+        "source": "dailytouslesjours.com"
+      }
+    },
+    {
+      "title": "Whistle, Two, Ready!",
+      "date": 2023,
+      "link": "https://www.dailytouslesjours.com/en/work/whistle-two-ready-2",
+      "role": "Contribution (unlisted in credits)",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2023/12/1DTLJ_WhistleTwoReady5_-728x471.jpg",
+        "source": "dailytouslesjours.com"
+      }
+    },
+    {
+      "title": "We Can Dance (Halifax / Nocturne 2022 — projection mapping update)",
+      "date": 2022,
+      "link": "https://www.dailytouslesjours.com/en/work/we-can-dance",
+      "role": "Updated version with projection mapping (unlisted in main credits)",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2022/12/NOCTURNE_22-jessjudge-192-728x485.jpg",
+        "source": "dailytouslesjours.com"
+      }
+    },
+    {
+      "title": "Giant Sing Along (QLab updates)",
+      "date": 2022,
+      "link": "https://www.dailytouslesjours.com/en/work/giant-sing-along",
+      "role": "QLab updates (unlisted in main credits)",
+      "image": {
+        "src": "https://static.dailytouslesjours.com/files/2019/12/GiantSingAlong_DailyTLJ_PhotoIreneChaudouet_01-e1716223067731-728x441.jpg",
+        "source": "dailytouslesjours.com"
+      }
+    },
+    {
+      "title": "LUNA PARK — Georges Aperghis",
       "date": 2015,
-      "link": "https://wave.ircam.fr/demo/leroux-voirex/"
+      "link": "https://wave.ircam.fr/demo/aperghis-luna-park/",
+      "role": "Web Development (IRCAM / APM)",
+      "image": {
+        "src": "https://wave.ircam.fr/demo/aperghis-luna-park/files/video/LUNA PARK - SOURCES.mp4",
+        "source": "wave.ircam.fr"
+      }
+    },
+    {
+      "title": "Elogio de la Sombra — Posadas / Quatuor Diotima",
+      "date": 2015,
+      "link": "https://wave.ircam.fr/demo/posadas-elogio-de-la-sombra/",
+      "role": "Web Development (IRCAM / APM)",
+      "image": {
+        "src": "https://wave.ircam.fr/demo/posadas-elogio-de-la-sombra/files/scores/mesures_1_3.png",
+        "source": "wave.ircam.fr"
+      }
+    },
+    {
+      "title": "VOI(REX) — Philippe Leroux",
+      "date": 2015,
+      "link": "https://wave.ircam.fr/demo/leroux-voirex/",
+      "role": "Web Development (IRCAM / ANR)",
+      "image": {
+        "src": null,
+        "source": "wave.ircam.fr"
+      }
     }
   ]
 }
