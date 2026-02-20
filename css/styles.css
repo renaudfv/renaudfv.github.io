@@ -18,32 +18,18 @@ body {
 }
 
 /* ================================================
-   Header — full viewport, p5 gradient behind text
+   Header — full viewport, CSS gradient
    ================================================ */
 
 header {
-    position: relative;
     height: 100vh;
-    overflow: hidden;
-}
-
-.p5 {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-}
-
-/* p5 appends canvas inside .p5 */
-.p5 canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-    pointer-events: none;
+    display: flex;
+    align-items: flex-start;
+    background: hsl(220, 30%, 10%); /* fallback before JS kicks in */
+    transition: background 0.1s ease;
 }
 
 .header {
-    position: relative;
-    z-index: 1;
     padding: 3rem 4rem;
 }
 
@@ -58,7 +44,7 @@ h1 {
 h2 {
     font-weight: 300;
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.55);
 }
 
 /* ================================================
