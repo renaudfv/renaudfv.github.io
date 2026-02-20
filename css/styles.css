@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap');
 
-/* ================================================
-   Reset
-   ================================================ */
-
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -11,12 +7,13 @@
 }
 
 :root {
-  --border: 1px solid rgba(255,255,255,0.12);
+  --border: 1px solid rgba(255, 255, 255, 0.12);
   --font: 'Cormorant Garamond', serif;
-  --text: rgba(255,255,255,0.85);
-  --text-dim: rgba(255,255,255,0.35);
-  --text-dimmer: rgba(255,255,255,0.18);
+  --text: rgba(255, 255, 255, 0.88);
+  --text-dim: rgba(255, 255, 255, 0.4);
+  --text-dimmer: rgba(255, 255, 255, 0.2);
   --bar-h: 36px;
+  --col-label: 160px;
 }
 
 html {
@@ -33,7 +30,7 @@ body {
 }
 
 /* ================================================
-   Background gradient (driven by main.js)
+   Background gradient
    ================================================ */
 
 .bg {
@@ -57,16 +54,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12px;
+  padding: 0 16px;
   border-bottom: var(--border);
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .topbar-name {
   font-size: 0.75rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   color: var(--text);
 }
 
@@ -77,7 +74,7 @@ body {
 }
 
 /* ================================================
-   Projects grid
+   Projects list
    ================================================ */
 
 #projects {
@@ -87,97 +84,80 @@ body {
   padding-bottom: var(--bar-h);
 }
 
-#projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+#projects-list {
   border-top: var(--border);
-  border-left: var(--border);
 }
 
 /* ================================================
-   Project card
+   Project row — Cargo style
    ================================================ */
 
-.project-card {
-  display: block;
+.project-row {
+  display: grid;
+  grid-template-columns: var(--col-label) 1fr;
+  border-bottom: var(--border);
   text-decoration: none;
   color: inherit;
+  transition: background 0.25s ease;
+}
+
+.project-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.project-row-label {
+  padding: 20px 16px;
   border-right: var(--border);
-  border-bottom: var(--border);
-  transition: background 0.3s ease;
-}
-
-.project-card:hover {
-  background: rgba(255,255,255,0.03);
-}
-
-.project-img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  background-size: cover;
-  background-position: center;
-  background-color: rgba(255,255,255,0.04);
-  display: block;
-  transition: opacity 0.4s ease;
-  opacity: 0.8;
-}
-
-.project-card:hover .project-img {
-  opacity: 1;
-}
-
-.project-img--empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255,255,255,0.03);
-}
-
-.project-img--empty::after {
-  content: '—';
-  color: rgba(255,255,255,0.08);
-  font-size: 1.5rem;
-}
-
-/* Metadata row below image — matches Cargo 2-col label/value layout */
-.project-meta {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  border-top: var(--border);
-  padding: 14px 14px 18px;
-  gap: 6px 0;
-}
-
-.project-meta-label {
   font-size: 0.62rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-dimmer);
-  padding-top: 3px;
   line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 22px;
 }
 
-.project-meta-value {
+.project-row-content {
+  padding: 20px 24px 24px;
+}
+
+.project-row-title {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.project-row-role {
   font-size: 0.88rem;
+  font-style: italic;
   color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.project-row-meta {
+  font-size: 0.78rem;
+  color: var(--text-dimmer);
   line-height: 1.5;
 }
 
-.project-meta-value.is-title {
-  font-size: 1rem;
-  color: var(--text);
-  font-weight: 400;
-}
-
-.project-meta-value.is-role {
-  font-style: italic;
+.project-row-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.78rem;
   color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
 }
 
-.project-meta-value.is-source {
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  color: var(--text-dimmer);
+.project-row:hover .project-row-link {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* ================================================
@@ -194,11 +174,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12px;
+  padding: 0 16px;
   border-top: var(--border);
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   font-size: 0.72rem;
   color: var(--text-dimmer);
 }
@@ -207,12 +187,16 @@ body {
    Responsive
    ================================================ */
 
-@media (max-width: 700px) {
-  #projects-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 600px) {
+  :root {
+    --col-label: 80px;
   }
 
   .topbar-sub {
     display: none;
+  }
+
+  .project-row-title {
+    font-size: 1rem;
   }
 }
