@@ -9,25 +9,33 @@
   <meta property="og:title" content="Renaud Vincent">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://renaudvincent.studio">
-  <meta property="og:description" content="Renaud Vincent - Creative technologist and food designer">
+  <meta property="og:description" content="Renaud Vincent - Studio/Lab">
   <meta property="og:image" content="image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header>
-    <div class="header">
-      <h1>Renaud Vincent</h1>
-      <h2>Creative technologist</h2>
-    </div>
-  </header>
 
-  <section id="projects">
-    <h3>Projects</h3>
+  <!-- Fixed gradient background -->
+  <div class="bg"></div>
+
+  <!-- Top bar -->
+  <nav class="topbar">
+    <span class="topbar-name">Renaud Vincent</span>
+    <span class="topbar-sub">Creative technologist</span>
+  </nav>
+
+  <!-- Projects grid -->
+  <main id="projects">
     <div id="projects-grid"></div>
-  </section>
+  </main>
+
+  <!-- Bottom bar -->
+  <footer class="bottombar">
+    <span>Renaud Vincent - Studio/Lab</span>
+  </footer>
 
   <script src="js/main.js"></script>
   <script src="js/projects.js"></script>
