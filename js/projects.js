@@ -17,10 +17,17 @@ fetch('projects.json')
       card.innerHTML = `
         ${imgHTML}
         <div class="project-info">
-          <span class="project-date">${project.date}</span>
-          <span class="project-title">${project.title}</span>
-          <span class="project-role">${project.role}</span>
-          <span class="project-source">${project.image.source}</span>
+          <span class="project-info-label">Project</span>
+          <span class="project-info-value project-title">${project.title}</span>
+
+          <span class="project-info-label">Role</span>
+          <span class="project-info-value project-role">${project.role}</span>
+
+          <span class="project-info-label">Year</span>
+          <span class="project-info-value">${project.date}</span>
+
+          <span class="project-info-label">Source</span>
+          <span class="project-info-value project-source">${project.image.source}</span>
         </div>
       `;
 
