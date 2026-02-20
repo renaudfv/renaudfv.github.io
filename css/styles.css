@@ -22,11 +22,10 @@ body {
    ================================================ */
 
 header {
-    height: 100vh;
+    height: 10vh;
     display: flex;
     align-items: flex-start;
-    background: hsl(220, 30%, 10%); /* fallback before JS kicks in */
-    transition: background 0.1s ease;
+    background: hsl(150, 25%, 30%); /* fallback before JS kicks in */
 }
 
 .header {
