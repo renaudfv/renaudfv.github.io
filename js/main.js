@@ -1,6 +1,5 @@
 function setup() {
-    const canvas = createCanvas(windowWidth, windowHeight);
-    canvas.parent(document.querySelector('.p5'));
+    createCanvas(windowWidth, windowHeight);
     noSmooth();
 }
 
