@@ -7,10 +7,10 @@
 }
 
 :root {
-  --fg:        rgba(255,255,255,0.82);
-  --fg-dim:    rgba(255,255,255,0.38);
-  --fg-dimmer: rgba(255,255,255,0.18);
-  --border:    rgba(255,255,255,0.10);
+  --fg:        rgba(0,0,0,0.82);
+  --fg-dim:    rgba(0,0,0,0.42);
+  --fg-dimmer: rgba(0,0,0,0.22);
+  --border:    rgba(0,0,0,0.09);
   --bar-h:     38px;
   --label-w:   180px;
   --serif:     'EB Garamond', Georgia, serif;
@@ -22,7 +22,7 @@ html, body {
 }
 
 body {
-  background: #080a0c;
+  background: #f5f3ef;
   color: var(--fg);
   font-family: var(--serif);
   font-size: 16px;
@@ -53,7 +53,7 @@ body {
   justify-content: space-between;
   padding: 0 20px;
   border-bottom: 1px solid var(--border);
-  background: rgba(8,10,12,0.55);
+  background: rgba(245,243,239,0.70);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -99,7 +99,7 @@ body {
 }
 
 .project-row:hover {
-  background: rgba(255,255,255,0.025);
+  background: rgba(0,0,0,0.025);
 }
 
 /* Left label column */
@@ -169,14 +169,14 @@ body {
 .project-row-link:hover,
 .project-row:hover .project-row-link {
   color: var(--fg);
-  border-color: rgba(255,255,255,0.35);
+  border-color: rgba(0,0,0,0.35);
 }
 
 /* Detail / description */
 .project-row-detail {
   margin-top: 14px;
   padding-top: 12px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(0,0,0,0.06);
   font-size: 0.9rem;
   line-height: 1.75;
   color: var(--fg-dim);
