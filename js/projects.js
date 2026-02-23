@@ -14,7 +14,7 @@ fetch('projects.json')
       `;
 
       row.innerHTML = `
-        <span class="project-row-label">Project</span>
+        <span class="project-row-label">${project.employer || 'Project'}</span>
         <div class="project-row-content">
           <div class="project-row-top">
             <div>
