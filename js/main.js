@@ -1,64 +1,83 @@
-const header = document.querySelector('.bg');
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
 
-let mouseX = 0.5;
-let mouseY = 0.5;
-
-// Each "orb" has its own current position, target, drift phase, and color
-const orbs = [
-    { cx: 0.3, cy: 0.3, tx: 0.3, ty: 0.3, phase: 0,    speed: 0.0007, radius: '60%',  parallax: 0.12, h: 200, s: 40, l: 18 },
-    { cx: 0.7, cy: 0.5, tx: 0.7, ty: 0.5, phase: 2.1,  speed: 0.0011, radius: '50%',  parallax: 0.08, h: 260, s: 30, l: 22 },
-    { cx: 0.5, cy: 0.8, tx: 0.5, ty: 0.8, phase: 4.3,  speed: 0.0009, radius: '55%',  parallax: 0.15, h: 180, s: 25, l: 14 },
-    { cx: 0.2, cy: 0.7, tx: 0.2, ty: 0.7, phase: 1.1,  speed: 0.0013, radius: '40%',  parallax: 0.06, h: 300, s: 20, l: 20 },
-    { cx: 0.8, cy: 0.2, tx: 0.8, ty: 0.2, phase: 3.5,  speed: 0.0008, radius: '45%',  parallax: 0.10, h: 220, s: 35, l: 12 },
-];
-
+let W, H;
+let mouseX = 0.5, mouseY = 0.5;
+let targetMouseX = 0.5, targetMouseY = 0.5;
 let t = 0;
 
+function resize() {
+  W = canvas.width  = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
 document.addEventListener('mousemove', e => {
-    mouseX = e.clientX / window.innerWidth;
-    mouseY = e.clientY / window.innerHeight;
+  targetMouseX = e.clientX / window.innerWidth;
+  targetMouseY = e.clientY / window.innerHeight;
 });
 
 function lerp(a, b, f) { return a + (b - a) * f; }
 
-function tick() {
-    t += 1;
+// Orbs — higher lightness so they're actually visible on dark bg
+const orbs = [
+  { x: 0.25, y: 0.25, phase: 0,   spd: 0.00035, rx: 0.22, ry: 0.18, h: 195, s: 55, l: 32, a: 0.55 },
+  { x: 0.75, y: 0.45, phase: 2.0, spd: 0.00048, rx: 0.18, ry: 0.22, h: 245, s: 45, l: 28, a: 0.50 },
+  { x: 0.50, y: 0.80, phase: 4.1, spd: 0.00040, rx: 0.25, ry: 0.16, h: 175, s: 40, l: 24, a: 0.45 },
+  { x: 0.15, y: 0.65, phase: 1.3, spd: 0.00055, rx: 0.16, ry: 0.20, h: 290, s: 35, l: 30, a: 0.40 },
+  { x: 0.85, y: 0.20, phase: 3.3, spd: 0.00042, rx: 0.20, ry: 0.18, h: 220, s: 50, l: 26, a: 0.48 },
+];
 
-    orbs.forEach((orb, i) => {
-        // Autonomous drift — each orb wanders on its own Lissajous path
-        const driftX = Math.sin(t * orb.speed * 1.3 + orb.phase) * 0.18;
-        const driftY = Math.cos(t * orb.speed + orb.phase * 1.7) * 0.14;
+function draw() {
+  t++;
 
-        // Mouse parallax — closer orbs react more
-        orb.tx = 0.5 + driftX + (mouseX - 0.5) * orb.parallax;
-        orb.ty = 0.5 + driftY + (mouseY - 0.5) * orb.parallax;
+  // Smooth mouse
+  mouseX = lerp(mouseX, targetMouseX, 0.04);
+  mouseY = lerp(mouseY, targetMouseY, 0.04);
 
-        orb.cx = lerp(orb.cx, orb.tx, 0.025);
-        orb.cy = lerp(orb.cy, orb.ty, 0.025);
+  // Dark base
+  ctx.fillStyle = '#080a0c';
+  ctx.fillRect(0, 0, W, H);
 
-        // Hue slowly drifts over time
-        orb.h += 0.04;
-    });
+  // Draw each orb as a radial gradient
+  orbs.forEach(orb => {
+    // Slow autonomous drift
+    const dx = Math.sin(t * orb.spd * 1.4 + orb.phase) * orb.rx;
+    const dy = Math.cos(t * orb.spd + orb.phase * 1.6) * orb.ry;
 
-    // Base dark background shifts subtly with mouse
-    const bgH = 210 + mouseX * 30;
-    const bgL = 4 + mouseY * 4;
+    // Mouse parallax (subtle)
+    const px = (mouseX - 0.5) * 0.10;
+    const py = (mouseY - 0.5) * 0.08;
 
-    // Build layered radial gradients
-    const gradients = orbs.map(orb => {
-        const x = (orb.cx * 100).toFixed(1);
-        const y = (orb.cy * 100).toFixed(1);
-        const h = orb.h % 360;
-        return `radial-gradient(ellipse ${orb.radius} at ${x}% ${y}%, hsl(${h}, ${orb.s}%, ${orb.l}%) 0%, transparent 70%)`;
-    });
+    const cx = (0.5 + dx + px) * W;
+    const cy = (0.5 + dy + py) * H;
 
-    // Add a base linear gradient for depth
-    const angle = 140 + mouseX * 40;
-    gradients.push(`linear-gradient(${angle}deg, hsl(${bgH}, 25%, ${bgL}%) 0%, hsl(${bgH + 40}, 20%, ${bgL + 6}%) 100%)`);
+    // Elliptical gradient via scale transform
+    const rx = W * 0.42;
+    const ry = H * 0.38;
 
-    header.style.background = gradients.join(', ');
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(1, ry / rx);
 
-    requestAnimationFrame(tick);
+    // Slowly rotate hue
+    orb.h = (orb.h + 0.025) % 360;
+
+    const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+    g.addColorStop(0,   `hsla(${orb.h}, ${orb.s}%, ${orb.l}%, ${orb.a})`);
+    g.addColorStop(0.5, `hsla(${orb.h}, ${orb.s}%, ${orb.l * 0.6}%, ${orb.a * 0.4})`);
+    g.addColorStop(1,   `hsla(${orb.h}, ${orb.s}%, 0%, 0)`);
+
+    ctx.fillStyle = g;
+    ctx.fillRect(-rx, -rx * (rx / ry), rx * 2, rx * 2 * (rx / ry));
+    ctx.restore();
+  });
+
+  // Very subtle noise grain via tiny semi-transparent pixels
+  // (skip for perf on slow devices — just use the smooth orbs)
+
+  requestAnimationFrame(draw);
 }
 
-tick();
+draw();
