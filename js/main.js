@@ -6,6 +6,10 @@ let mouseX = 0.5, mouseY = 0.5;
 let targetMouseX = 0.5, targetMouseY = 0.5;
 let t = 0;
 
+// Exposed to projects.js: 1 = normal, 4 = fast (no-image hover)
+window.__orbBoost = 1;
+let currentBoost = 1;
+
 function resize() {
   W = canvas.width  = window.innerWidth;
   H = canvas.height = window.innerHeight;
@@ -20,8 +24,6 @@ document.addEventListener('mousemove', e => {
 
 function lerp(a, b, f) { return a + (b - a) * f; }
 
-// Orbs — saturated colors, moderate lightness, drawn on light base
-// so they read as soft color washes rather than glows
 const orbs = [
   { x: 0.25, y: 0.25, phase: 0,   spd: 0.00035, rx: 0.28, ry: 0.22, h: 195, s: 70, l: 65, a: 0.30 },
   { x: 0.75, y: 0.45, phase: 2.0, spd: 0.00048, rx: 0.22, ry: 0.26, h: 340, s: 60, l: 70, a: 0.25 },
@@ -31,16 +33,17 @@ const orbs = [
 ];
 
 function draw() {
-  t++;
+  // Smoothly interpolate boost so the speed change feels fluid
+  currentBoost = lerp(currentBoost, window.__orbBoost, 0.06);
+
+  t += currentBoost;
 
   mouseX = lerp(mouseX, targetMouseX, 0.04);
   mouseY = lerp(mouseY, targetMouseY, 0.04);
 
-  // Warm off-white base
   ctx.fillStyle = '#f5f3ef';
   ctx.fillRect(0, 0, W, H);
 
-  // Additive-ish blending: multiply mode makes colors deepen on overlap
   ctx.globalCompositeOperation = 'multiply';
 
   orbs.forEach(orb => {
@@ -60,7 +63,8 @@ function draw() {
     ctx.translate(cx, cy);
     ctx.scale(1, ry / rx);
 
-    orb.h = (orb.h + 0.020) % 360;
+    // Hue drift also speeds up with boost
+    orb.h = (orb.h + 0.020 * currentBoost) % 360;
 
     const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
     g.addColorStop(0,   `hsla(${orb.h}, ${orb.s}%, ${orb.l}%, ${orb.a})`);
