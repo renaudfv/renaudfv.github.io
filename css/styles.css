@@ -80,6 +80,7 @@ body {
   position: relative;
   z-index: 1;
   padding-top: var(--bar-h);
+  padding-bottom: var(--bar-h); /* ensure footer is visible */
 }
 
 /* ─── Project list ─────────────────────────────────────── */
@@ -187,29 +188,77 @@ body {
   opacity: 0.6;
 }
 
-/* ─── Social icons — floating bottom-right ─────────────── */
+/* ─── Social icons in footer ─────────────── */
 
-.social {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100;
+.footer-social {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
+  flex-direction: row;
+  gap: 56px;
+  margin-left: auto;
+  margin-right: 32px;
+}
+
+.footer-social-text .social-link {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--fg-dim);
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.2s;
+}
+.footer-social-text .social-link:hover {
+  color: var(--fg);
+  text-decoration: underline;
 }
 
 .social-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--fg-dimmer);
+  color: var(--fg-dim); /* mid-contrast */
   text-decoration: none;
   transition: color 0.2s;
+  width: 32px;
+  height: 32px;
 }
 
 .social-link:hover {
   color: var(--fg);
+}
+
+/* ─── Footer bar ───────────────────────────────────────── */
+.bottombar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--bar-h);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  border-top: 1px solid var(--border);
+  background: rgba(245,243,239,0.70);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 100;
+}
+.bottombar-name {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--fg-dim);
+}
+.bottombar-role {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--fg-dim);
 }
 
 /* ─── Responsive ───────────────────────────────────────── */
