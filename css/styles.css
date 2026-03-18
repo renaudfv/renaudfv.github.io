@@ -206,3 +206,23 @@ body {
     padding: 18px 10px 18px 14px;
   }
 }
+
+/* ─── Topbar icons ─────────────────────────────────────────── */
+
+.topbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-icon {
+  display: flex;
+  align-items: center;
+  color: var(--fg-dimmer);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.topbar-icon:hover {
+  color: var(--fg);
+}
